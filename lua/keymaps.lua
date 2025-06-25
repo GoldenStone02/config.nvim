@@ -27,23 +27,12 @@ map('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 -- Neotree keymaps
 map('n', '<C-n>', '<cmd>Neotree filesystem toggle left<CR>', { desc = 'Toggle filetree' })
 
--- TIP: Disable arrow keys in normal mode
--- map('n', '<kleftk>', '<cmd>echo "Use h to move!!"<CR>')
--- map('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- map('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- map('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
-
 map('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 map('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 map('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 map('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-
--- map("n", "<C-S-h>", "<C-w>H", { desc = "Move window to the left" })
--- map("n", "<C-S-l>", "<C-w>L", { desc = "Move window to the right" })
--- map("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
--- map("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -58,5 +47,62 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.hl.on_yank()
   end,
 })
+
+-- [[ Barbar.nvim commands ]]
+
+-- Move to previous/next
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', defaults)
+map('n', '<A-.>', '<Cmd>BufferNext<CR>', defaults)
+
+-- Re-order to previous/next
+map('n', '<A-<>', '<Cmd>BufferMovePrevious<CR>', defaults)
+map('n', '<A->>', '<Cmd>BufferMoveNext<CR>', defaults)
+
+-- Goto buffer in position...
+map('n', '<A-1>', '<Cmd>BufferGoto 1<CR>', defaults)
+map('n', '<A-2>', '<Cmd>BufferGoto 2<CR>', defaults)
+map('n', '<A-3>', '<Cmd>BufferGoto 3<CR>', defaults)
+map('n', '<A-4>', '<Cmd>BufferGoto 4<CR>', defaults)
+map('n', '<A-5>', '<Cmd>BufferGoto 5<CR>', defaults)
+map('n', '<A-6>', '<Cmd>BufferGoto 6<CR>', defaults)
+map('n', '<A-7>', '<Cmd>BufferGoto 7<CR>', defaults)
+map('n', '<A-8>', '<Cmd>BufferGoto 8<CR>', defaults)
+map('n', '<A-9>', '<Cmd>BufferGoto 9<CR>', defaults)
+map('n', '<A-0>', '<Cmd>BufferLast<CR>', defaults)
+
+-- Pin/unpin buffer
+map('n', '<A-p>', '<Cmd>BufferPin<CR>', defaults)
+
+-- Goto pinned/unpinned buffer
+--      :BufferGotoPinned
+--      :BufferGotoUnpinned
+
+-- Close buffer
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', defaults)
+
+-- Wipeout buffer
+--      :BufferWipeout
+
+-- Close commands
+--      :BufferCloseAllButCurrent
+--      :BufferCloseAllButPinned
+--      :BufferCloseAllButCurrentOrPinned
+--      :BufferCloseBuffersLeft
+--      :BufferCloseBuffersRight
+
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', defaults)
+map('n', '<C-s-p>', '<Cmd>BufferPickDelete<CR>', defaults)
+
+-- Sort automatically by...
+map('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>', defaults)
+map('n', '<Space>bn', '<Cmd>BufferOrderByName<CR>', defaults)
+map('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>', defaults)
+map('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>', defaults)
+map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', defaults)
+
+-- Other:
+-- :BarbarEnable - enables barbar (enabled by default)
+-- :BarbarDisable - very bad command, should never be used
 
 -- vim: ts=2 sts=2 sw=2 et
