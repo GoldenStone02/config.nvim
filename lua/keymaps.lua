@@ -2,7 +2,6 @@ local map = vim.keymap.set
 local defaults = { noremap = true, silent = true }
 
 -- [[ Basic Keymaps ]]
-
 map('n', '<C-s>', ':w<CR>', { desc = '[W]rite' })
 map('n', '<leader>a', ':wqa<CR>', { desc = 'Save [A]ll Changes & Exit' }) -- saves all changes and exit all files
 map('n', '<leader>x', ':wq<CR>', { desc = 'Save & e[X]it' })
@@ -78,7 +77,7 @@ map('n', '<A-p>', '<Cmd>BufferPin<CR>', defaults)
 --      :BufferGotoUnpinned
 
 -- Close buffer
-map('n', '<A-c>', '<Cmd>BufferClose<CR>', defaults)
+map('n', '<A-x>', '<Cmd>BufferClose<CR>', defaults)
 
 -- Wipeout buffer
 --      :BufferWipeout
@@ -104,5 +103,10 @@ map('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>', defaults)
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
+
+-- Commenting (VScode muscle memory)
+-- map('i', '<C-/>', 'gcc', '<Esc>:Commentary<CR>')
+map('n', '<C-_>', 'gcc', { remap = true })
+map('v', '<C-_>', 'gc', { remap = true })
 
 -- vim: ts=2 sts=2 sw=2 et
