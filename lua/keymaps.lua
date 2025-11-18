@@ -77,7 +77,9 @@ map('n', '<A-p>', '<Cmd>BufferPin<CR>', defaults)
 --      :BufferGotoUnpinned
 
 -- Close buffer
-map('n', '<A-x>', '<Cmd>BufferClose<CR>', defaults)
+map('n', '<C-w>', '<Cmd>BufferClose<CR>', defaults)
+-- Restore buffer
+map('n', '<C-t>', '<Cmd>BufferRestore<CR>', defaults)
 
 -- Wipeout buffer
 --      :BufferWipeout
